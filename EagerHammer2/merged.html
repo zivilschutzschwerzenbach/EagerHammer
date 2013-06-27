@@ -266,8 +266,8 @@ function startDrawing(poly, name, onUpdate, color) {
 
 function placeMarkerOld() {
   select("placemark_b");
-  var listener = google.maps.event.addListener(map, "click", function(overlay, latlng) {
-    if (latlng) {
+  var listener = google.maps.event.addListener(map, "click", function(event) {
+    if (event.latlng) {
       select("hand_b");
       google.maps.event.removeListener(listener);
       var color = getColor(true);
