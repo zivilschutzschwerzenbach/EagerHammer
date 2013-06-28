@@ -67,23 +67,18 @@ body {
 	height: 100%
 }
 
-#shelf {
+#left {
 	position: fixed;
 	top: 10px;
 	left: 10px;
-	height: 1500px;
-	width: 200px;
-	background: white;
-	opacity: 0.8;
 }
 
-#draggable {
-	position: absolute;
-	top: 10px, left:10px;
-	width: 30px;
-	height: 30px;
-	z-index: 1000000000;
+#right {
+	position: fixed;
+	top: 10px;
+	right: 10px;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -109,11 +104,192 @@ stop: function(e) {
 
 
 $(document).ready(function() {
-$("#draggable").draggable({helper: 'clone',
+$("#obdachlose").draggable({helper: 'clone',
 stop: function(e) {
     var point=new google.maps.Point(e.pageX,e.pageY);
     var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
     placeMarker(ll,'images/obdachlose.gif');
+    }
+});
+});
+
+
+$(document).ready(function() {
+$("#vermisste").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/vermisste.gif');
+    }
+});
+});
+
+
+$(document).ready(function() {
+$("#fahrzeug").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/fahrzeug.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#informationsstelle").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/Informationsstelle.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#Kontrollstelle").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/Kontrollstelle.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#gas").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/gas.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#aufzug").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/aufzug.gif');
+    }
+});
+});
+
+
+$(document).ready(function() {
+$("#überflurhydrant").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/überflurhydrant.gif');
+    }
+});
+});
+
+
+$(document).ready(function() {
+$("#unterflurhydrant").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/unterflurhydrant.gif');
+    }
+});
+});
+
+
+$(document).ready(function() {
+$("#eingeschlossene").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/eingeschlossene.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#chemikalien").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/chemikalien.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#explosion").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/explosion.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#achtung").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/achtung.gif');
+    }
+});
+});
+
+
+
+
+
+
+
+$(document).ready(function() {
+$("#KantonalerFührungsstab").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/KantonalerFührungsstab.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#KommandopostenFront").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/KommandopostenFront.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#KommandopostenRück").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/KommandopostenRück.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#RegionalerFührungsstab").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/RegionalerFührungsstab.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#Sammelstelle").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/Sammelstelle.gif');
     }
 });
 });
@@ -133,30 +309,81 @@ stop: function(e) {
 
 <body onload="initialize()">
 	<div id="map_canvas"></div>
-	<div id='shelf'>
-		Drag the image<br />
-
-	<table>
+	<div id='left'>
+	<table cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8">
 			<tr>
-				<td><img id="tote" src='images/tote.gif' /><br></td>
-				<td><img id="verletzte" src='images/verletzte.gif' /><br>
-				</td>
+			<td colspan=3 align='center'><br><font size=6>Flächen</font></td>
 			</tr>
 			<tr>
-				<td><img id="draggable	" src='images/obdachlose.gif' /><br></td>
-				<td><div id="hand_b" onclick="stopEditing()"/></td>
-				<td><div id="placemark_b" onclick="placeMarkerOld()"/></td>
-				<td><div id="line_b" onclick="startLine()"/></td>
-				<td><div id="shape_b" onclick="startShape()"/></td>
-				
- 
+				<td align='center'><div id="hand_b" onclick="stopEditing()"/></td>
+				<td align='center'><div id="line_b" onclick="startLine()"/></td>
+				<td align='center'><div id="shape_b" onclick="startShape()"/></td>
 			</tr>
-				<input type="hidden" id="featuredetails" rows=2>
-				</input>
-				<p>To draw on the map, click on one of the buttons and then click on the map.  Double-click to stop drawing a line or shape. Click on an element to change color. To edit a line or shape, mouse over it and drag the points.  Click on a point to delete it.
-				</p>
+			<tr>
+			<td colspan=3 align='center'><br><font size=6>Signaturen</font></td>
+			</tr>
+			<tr>
+				<td colspan=3 align='center'><a href="javascript:void(0)" onclick="collapseTr('invisible1')"><font size=4>Bestehende Situation</font></a></td>
+			</tr>
+			<tr id="invisible1" style="display:none; visibility:hidden;">
+				<td align='center'><img id="aufzug" src='images/aufzug.gif' /><br></td>
+				<td align='center'><img id="überflurhydrant" src='images/überflurhydrant.gif' /><br></td>
+				<td align='center'><img id="unterflurhydrant" src='images/unterflurhydrant.gif' /><br></td>
+			</tr>
+			<tr>
+				<td colspan=3 align='center'><a href="javascript:void(0)" onclick="collapseTr('invisible2')"><font size=4>Schadenlage</font></a></td>
+			</tr>
+			<tr id="invisible2" style="display:none; visibility:hidden;">
+				<td align='center'><img id="tote" src='images/tote.gif' /><br></td>
+				<td align='center'><img id="verletzte" src='images/verletzte.gif' /><br></td>
+				<td align='center'><img id="obdachlose" src='images/obdachlose.gif' /><br></td>
+			</tr>
+			<tr id="invisible2" style="display:none; visibility:hidden;">
+				<td align='center'><img id="vermisste" src='images/vermisste.gif' /><br></td>
+				<td align='center'><img id="eingeschlossene" src='images/eingeschlossene.gif' /><br></td>
+				<td/>
+			</tr>
+			<tr>
+				<td colspan=3 align='center'><font size=4>Lösung / Entscheid</font></td>
+			</tr>
+			<tr>
+				<td align='center'><img id=fahrzeug src='images/fahrzeug.gif' /><br></td>
+				<td align='center'><img id="informationsstelle" src='images/Informationsstelle.gif' /><br></td>
+				<td align='center'><img id="Kontrollstelle" src='images/Kontrollstelle.gif' /><br></td>
+			</tr>
+			<tr>
+				<td align='center'><img id=KantonalerFührungsstab src='images/KantonalerFührungsstab.gif' /><br></td>
+				<td align='center'><img id="KommandopostenFront" src='images/KommandopostenFront.gif' /><br></td>
+				<td align='center'><img id="KommandopostenRück" src='images/KommandopostenRück.gif' /><br></td>
+			</tr>
+			<tr>
+				<td align='center'><img id=RegionalerFührungsstab src='images/RegionalerFührungsstab.gif' /><br></td>
+				<td align='center'><img id="Sammelstelle" src='images/Sammelstelle.gif' /><br></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan=3 align='center'><font size=4>Gefahren</font></td>
+			</tr>
+			<tr>
+				<td align='center'><img id=achtung src='images/achtung.gif' /><br></td>
+				<td align='center'><img id="chemikalien" src='images/chemikalien.gif' /><br></td>
+				<td align='center'><img id="explosion" src='images/explosion.gif' /><br></td>
+			</tr>
+			<tr>
+				<td align='center'><img id=gas src='images/gas.gif' /><br></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
 	</table>
-	<a href="http://google.de/"  onclick="return confirm('Möchten Sie googlen?');">google</a>
+	<div id="placemark_b" onclick="placeMarkerOld()"/>
+	</div>
+	<dif id='right'>
+	<input type="hidden" id="featuredetails" rows=2></input>
+	 <table id ="featuretable" style="background-color:#000000;background: white;opacity: 0.8">
+     <tbody id="featuretbody"></tbody>
+    </table>
+    </dif>
 </body></html>
 </body>
 </html>
