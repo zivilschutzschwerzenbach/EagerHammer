@@ -118,6 +118,16 @@ stop: function(e) {
 });
 });
 
+$(document).ready(function() {
+$("#draggable").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/achtung.gif');
+    }
+});
+});
+
 
 </script>
 <script type="text/javascript"
