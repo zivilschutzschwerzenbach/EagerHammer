@@ -19,15 +19,15 @@ function initialize() {
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			mapTypeControlOptions: {
 				style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-				position: google.maps.ControlPosition.TOP_RIGHT },
+				position: google.maps.ControlPosition.BOTTOM_RIGHT },
 				zoomControl: true,
 				zoomControlOptions: {
 					style: google.maps.ZoomControlStyle.LARGE,
-					position: google.maps.ControlPosition.RIGHT_TOP
+					position: google.maps.ControlPosition.RIGHT_BOTTOM
 				},
 				scaleControl: true,
 				scaleControlOptions: {
-					position: google.maps.ControlPosition.TOP_RIGHT
+					position: google.maps.ControlPosition.BOTTOM_RIGHT
 				},
 				streetViewControl: false,
 				panControl:false,
@@ -61,6 +61,9 @@ function placeMarker(location,image) {
   draggable: true,
   icon: image
   });
+  
+  var cells = addFeatureEntry("Placemark " + (++markerCounter_),"black");
+  updateMarker(marker, cells);
 
 }
 
