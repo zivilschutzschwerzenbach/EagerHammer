@@ -6,8 +6,10 @@ var lineCounter_ = 0;
 var shapeCounter_ = 0;
 var markerCounter_ = 0;
 var colorIndex_ = 0;
+var shape; 
 
-
+var COLORS = [["red", "#ff0000"], ["orange", "#ff8800"], ["green","#008000"],
+              ["blue", "#000080"], ["purple", "#800080"]];
 
 function initialize() {
 	var $latlng = new google.maps.LatLng(47.381211, 8.68);
@@ -31,6 +33,16 @@ function initialize() {
 				panControl:false,
 
 	};
+	shape = new google.maps.Polygon({
+	  strokeColor: '#ff0000',
+	  strokeOpacity: 0.8,
+	  strokeWeight: 2,
+	  fillColor: '#ff0000',
+	  fillOpacity: 0.35,
+	  draggable: true,
+	  editable: true
+	});
+
 
 	$map = new google.maps.Map(document.getElementById("map_canvas"),
     myOptions);
@@ -42,7 +54,6 @@ function initialize() {
     featureTable_ = document.getElementById("featuretbody");
 } 
 
-
 function placeMarker(location,image) {
   var marker = new google.maps.Marker({
   position: location, 
@@ -52,16 +63,6 @@ function placeMarker(location,image) {
   });
 
 }
-
-var COLORS = [["red", "#ff0000"], ["orange", "#ff8800"], ["green","#008000"],
-              ["blue", "#000080"], ["purple", "#800080"]];
-var options = {};
-var lineCounter_ = 0;
-var shapeCounter_ = 0;
-var markerCounter_ = 0;
-var colorIndex_ = 0;
-var featureTable_;
-var map;
 
 function select(buttonId) {
   document.getElementById("hand_b").className="unselected";
@@ -90,24 +91,27 @@ function getIcon(color) {
 
 function startShape() {
   select("shape_b");
-  var color = getColor(false);
-  var polygon = new google.maps.Polygon([], color, 2, 0.7, color, 0.2);
-  startDrawing(polygon, "Shape " + (++shapeCounter_), function() {
-    var cell = this;
-    var area = polygon.getArea();
-    cell.innerHTML = (Math.round(area / 10000) / 100) + "km<sup>2</sup>";
-  }, color);
+  drawPolygon();
 }
 
 function startLine() {
   select("line_b");
+  drawPolygon(false);
+}
+
+function drawPolygon(filled){
   var color = getColor(false);
-  var line = new google.maps.Polyline([], color);
-  startDrawing(line, "Line " + (++lineCounter_), function() {
-    var cell = this;
-    var len = line.getLength();
-    cell.innerHTML = (Math.round(len / 10) / 100) + "km";
-  }, color);
+  var poly = new google.maps.Polygon(shape);
+  if ( filled == false ) {
+  	poly.setOptions({fillOpacity: 0});
+  }
+  poly.setMap($map);
+  google.maps.event.addListener($map, 'click', addPoint);
+}
+
+function addPoint(e) {
+	var vertices = shape.getPath();
+	vertices.push(e.latLng);
 }
 
 function addFeatureEntry(name, color) {
@@ -125,26 +129,7 @@ function addFeatureEntry(name, color) {
   return {desc: descriptionCell, color: colorCell};
 }
 
-function startDrawing(poly, name, onUpdate, color) {
-  poly.setMap($map);
-  poly.enableDrawing(options);
-  poly.enableEditing({onEvent: "mouseover"});
-  poly.disableEditing({onEvent: "mouseout"});
-  google.maps.event.addListener(poly, "endline", function() {
-    select("hand_b");
-    var cells = addFeatureEntry(name, color);
-    google.maps.event.bind(poly, "lineupdated", cells.desc, onUpdate);
-    google.maps.event.addListener(poly, "click", function($latlng, index) {
-      if (typeof index == "number") {
-        poly.deleteVertex(index);
-      } else {
-        var newColor = getColor(false);
-        cells.color.style.backgroundColor = newColor
-        poly.setStrokeStyle({color: newColor, weight: 4});
-      }
-    });
-  });
-}
+
 
 function placeMarkerOld() {
 	  select("placemark_b");
