@@ -118,6 +118,27 @@ stop: function(e) {
 });
 });
 
+$(document).ready(function() {
+$("#vermisste").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/vermisste.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#achtung").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/achtung.gif');
+    }
+});
+});
+
+
 
 </script>
 <script type="text/javascript"
@@ -141,9 +162,16 @@ stop: function(e) {
 				<td><img id="tote" src='images/tote.gif' /><br></td>
 				<td><img id="verletzte" src='images/verletzte.gif' /><br>
 				</td>
-			</tr>
+	
 			<tr>
 				<td><img id="obdachlose" src='images/obdachlose.gif' /><br></td>
+			
+					<td><img id="vermisste" src='images/vermisste.gif' /><br></td>
+					<td><img id="achtung" src='images/achtung.gif' /><br></td>
+						<tr>
+							<tr>
+								<tr>
+								<tr>
 				<td><div id="hand_b" onclick="stopEditing()"/></td>
 				<td><div id="placemark_b" onclick="placeMarkerOld()"/></td>
 				<td><div id="line_b" onclick="startLine()"/></td>
