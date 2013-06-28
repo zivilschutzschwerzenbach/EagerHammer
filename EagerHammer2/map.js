@@ -1,40 +1,45 @@
 var $map;
 var $latlng;
 var overlay;
-
+var featureTable_;
+var lineCounter_ = 0;
+var shapeCounter_ = 0;
+var markerCounter_ = 0;
+var colorIndex_ = 0;
 
 
 
 function initialize() {
-var $latlng = new google.maps.LatLng(47.381211, 8.68);
-var myOptions = {
-  zoom: 14,
-  center: $latlng,
-  mapTypeId: google.maps.MapTypeId.ROADMAP,
-  mapTypeControlOptions: {
-    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-    position: google.maps.ControlPosition.TOP_RIGHT },
-     zoomControl: true,
-zoomControlOptions: {
-    style: google.maps.ZoomControlStyle.LARGE,
-    position: google.maps.ControlPosition.RIGHT_TOP
-},
-scaleControl: true,
-scaleControlOptions: {
-    position: google.maps.ControlPosition.TOP_RIGHT
-},
-streetViewControl: false,
+	var $latlng = new google.maps.LatLng(47.381211, 8.68);
+	var myOptions = {
+			zoom: 14,
+			center: $latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			mapTypeControlOptions: {
+				style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+				position: google.maps.ControlPosition.TOP_RIGHT },
+				zoomControl: true,
+				zoomControlOptions: {
+					style: google.maps.ZoomControlStyle.LARGE,
+					position: google.maps.ControlPosition.RIGHT_TOP
+				},
+				scaleControl: true,
+				scaleControlOptions: {
+					position: google.maps.ControlPosition.TOP_RIGHT
+				},
+				streetViewControl: false,
+				panControl:false,
 
-  panControl:false,
+	};
 
-};
-
-$map = new google.maps.Map(document.getElementById("map_canvas"),
+	$map = new google.maps.Map(document.getElementById("map_canvas"),
     myOptions);
 
-overlay = new google.maps.OverlayView();
-overlay.draw = function() {};
-overlay.setMap($map);
+	overlay = new google.maps.OverlayView();
+	overlay.draw = function() {};
+	overlay.setMap($map);
+	
+    featureTable_ = document.getElementById("featuretbody");
 } 
 
 
@@ -75,10 +80,11 @@ function getColor(named) {
 }
 
 function getIcon(color) {
-  var icon = new google.maps.Icon();
-  icon.image = "http://google.com/mapfiles/ms/micons/" + color + ".png";
-  icon.iconSize = new google.maps.Size(32, 32);
-  icon.iconAnchor = new google.maps.Point(15, 32);
+  var icon = {
+  		url:"http://google.com/mapfiles/ms/micons/" + color + ".png",
+  		size: new google.maps.Size(32, 32),
+  		anchor: new google.maps.Point(15, 32)
+  };
   return icon;
 }
 
@@ -120,7 +126,7 @@ function addFeatureEntry(name, color) {
 }
 
 function startDrawing(poly, name, onUpdate, color) {
-  poliy.draw($map);
+  poly.setMap($map);
   poly.enableDrawing(options);
   poly.enableEditing({onEvent: "mouseover"});
   poly.disableEditing({onEvent: "mouseout"});
@@ -141,33 +147,42 @@ function startDrawing(poly, name, onUpdate, color) {
 }
 
 function placeMarkerOld() {
-  select("placemark_b");
-  var listener = google.maps.event.addListener(map, "click", function(event) {
-    if (event.latlng) {
-      select("hand_b");
-      google.maps.event.removeListener(listener);
-      var color = getColor(true);
-      var marker = new google.maps.Marker($latlng, {icon: getIcon(color), draggable: true});
-      $map.addOverlay(poly);
-      var cells = addFeatureEntry("Placemark " + (++markerCounter_), color);
-      updateMarker(marker, cells);
-      google.maps.event.addListener(marker, "dragend", function() {
-        updateMarker(marker, cells);
-      });
-      google.maps.event.addListener(marker, "click", function() {
-        updateMarker(marker, cells, true);
-      });
-    }
-  });
-}
+	  select("placemark_b");
+	  listener = google.maps.event.addListener($map, "click", function(event) {
+	    if (event.latLng) {
+	      select("hand_b");
+	      google.maps.event.removeListener(listener);
+	      var color = getColor(true);
+	      marker = placeMarkerNow(event.latLng,color);
+	      var cells = addFeatureEntry("Placemark " + (++markerCounter_), color);
+	      updateMarker(marker, cells);
+	      google.maps.event.addListener(marker, "dragend", function() {
+	        updateMarker(marker, cells);
+	      });
+	      google.maps.event.addListener(marker, "click", function() {
+	        updateMarker(marker, cells, true);
+	      });
+	    }
+	  });
+	}
 
+function placeMarkerNow(location,color) {
+	  var marker = new google.maps.Marker({
+	      position: location,
+	      draggable: true,
+	      map: $map,
+	      icon: getIcon(color)
+	  });
+	  return marker
+}
+	
 function updateMarker(marker, cells, opt_changeColor) {
   if (opt_changeColor) {
     var color = getColor(true);
-    marker.setImage(getIcon(color).image);
+    marker.setIcon(getIcon(color));
     cells.color.style.backgroundColor = color;
   }
-  var latlng = marker.getPoint();
-  cells.desc.innerHTML = "(" + Math.round(latlng.y * 100) / 100 + ", " +
-  Math.round(latlng.x * 100) / 100 + ")";
+  var latLng = marker.getPosition();
+  cells.desc.innerHTML = "(" + Math.round(latLng.lng() * 1000) / 1000 + ", " +
+  Math.round(latLng.lat() * 1000) / 1000 + ")";
 }
