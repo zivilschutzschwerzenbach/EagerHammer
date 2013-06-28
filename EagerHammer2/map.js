@@ -174,3 +174,4 @@ function updateMarker(marker, cells, opt_changeColor) {
   cells.desc.innerHTML = "(" + Math.round(latLng.lng() * 1000) / 1000 + ", " +
   Math.round(latLng.lat() * 1000) / 1000 + ")";
 }
+

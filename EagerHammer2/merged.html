@@ -71,6 +71,10 @@ body {
 	position: fixed;
 	top: 10px;
 	left: 10px;
+	width: 280px;
+	background: white;
+	opacity: 0.8;
+	
 }
 
 #right {
@@ -82,6 +86,20 @@ body {
 </style>
 
 <script type="text/javascript">
+
+function collapseTr(id) {
+	for ( var i = 0, j = arguments.length; i < j; i++) {
+		var el = document.getElementById(arguments[i]);
+		if (el.style.display == "none") {
+			el.style.display = "";
+			el.style.visibility = 'visible';
+		} else {
+			el.style.display = "none";
+			el.style.visibility = 'hidden';
+		}
+	}
+}
+
 $(document).ready(function() {
 $("#tote").draggable({helper: 'clone',
 stop: function(e) {
@@ -310,7 +328,7 @@ stop: function(e) {
 <body onload="initialize()">
 	<div id="map_canvas"></div>
 	<div id='left'>
-	<table cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8">
+	<table width='250px' cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8">
 			<tr>
 			<td colspan=3 align='center'><br><font size=6>Flächen</font></td>
 			</tr>
@@ -319,33 +337,47 @@ stop: function(e) {
 				<td align='center'><div id="line_b" onclick="startLine()"/></td>
 				<td align='center'><div id="shape_b" onclick="startShape()"/></td>
 			</tr>
+	</table>
+	<table width='250px' cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8">
 			<tr>
 			<td colspan=3 align='center'><br><font size=6>Signaturen</font></td>
 			</tr>
+	</table>
+	<table width='250px' cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8">
 			<tr>
 				<td colspan=3 align='center'><a href="javascript:void(0)" onclick="collapseTr('invisible1')"><font size=4>Bestehende Situation</font></a></td>
 			</tr>
-			<tr id="invisible1" style="display:none; visibility:hidden;">
+	</table>
+	<table id="invisible1" width='250px' cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8;display:none; visibility:hidden;">
+			<tr>
 				<td align='center'><img id="aufzug" src='images/aufzug.gif' /><br></td>
 				<td align='center'><img id="überflurhydrant" src='images/überflurhydrant.gif' /><br></td>
 				<td align='center'><img id="unterflurhydrant" src='images/unterflurhydrant.gif' /><br></td>
 			</tr>
+	</table>
+	<table width='250px' cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8">
 			<tr>
 				<td colspan=3 align='center'><a href="javascript:void(0)" onclick="collapseTr('invisible2')"><font size=4>Schadenlage</font></a></td>
 			</tr>
-			<tr id="invisible2" style="display:none; visibility:hidden;">
+	</table>
+	<table id="invisible2"  width='250px' cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8;display:none; visibility:hidden;">
+			<tr>
 				<td align='center'><img id="tote" src='images/tote.gif' /><br></td>
 				<td align='center'><img id="verletzte" src='images/verletzte.gif' /><br></td>
 				<td align='center'><img id="obdachlose" src='images/obdachlose.gif' /><br></td>
 			</tr>
-			<tr id="invisible2" style="display:none; visibility:hidden;">
+			<tr>
 				<td align='center'><img id="vermisste" src='images/vermisste.gif' /><br></td>
 				<td align='center'><img id="eingeschlossene" src='images/eingeschlossene.gif' /><br></td>
 				<td/>
 			</tr>
+	</table>
+	<table width='250px' cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8">
 			<tr>
-				<td colspan=3 align='center'><font size=4>Lösung / Entscheid</font></td>
+				<td colspan=3 align='center'><a href="javascript:void(0)" onclick="collapseTr('invisible3')"><font size=4>Lösung / Entscheid</font></a></td>
 			</tr>
+	</table>
+	<table id="invisible3" width='250px' cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8;display:none; visibility:hidden;">
 			<tr>
 				<td align='center'><img id=fahrzeug src='images/fahrzeug.gif' /><br></td>
 				<td align='center'><img id="informationsstelle" src='images/Informationsstelle.gif' /><br></td>
@@ -361,9 +393,13 @@ stop: function(e) {
 				<td align='center'><img id="Sammelstelle" src='images/Sammelstelle.gif' /><br></td>
 				<td></td>
 			</tr>
+	</table>
+	<table width='250px' cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8">
 			<tr>
-				<td colspan=3 align='center'><font size=4>Gefahren</font></td>
+				<td colspan=3 align='center'><a href="javascript:void(0)" onclick="collapseTr('invisible4')"><font size=4>Gefahren</font></a></td>
 			</tr>
+	</table>
+	<table id="invisible4" width='250px' cellspacing="20" cellpadding="20" style="background-color:#FFFFFF;opacity: 0.8;display:none; visibility:hidden;">
 			<tr>
 				<td align='center'><img id=achtung src='images/achtung.gif' /><br></td>
 				<td align='center'><img id="chemikalien" src='images/chemikalien.gif' /><br></td>
@@ -374,7 +410,6 @@ stop: function(e) {
 				<td></td>
 				<td></td>
 			</tr>
-			
 	</table>
 	<div id="placemark_b" onclick="placeMarkerOld()"/>
 	</div>
