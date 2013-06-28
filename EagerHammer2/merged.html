@@ -196,6 +196,105 @@ stop: function(e) {
     }
 });
 });
+
+
+$(document).ready(function() {
+$("#eingeschlossene").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/eingeschlossene.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#chemikalien").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/chemikalien.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#explosion").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/explosion.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#achtung").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/achtung.gif');
+    }
+});
+});
+
+
+
+
+
+
+
+$(document).ready(function() {
+$("#KantonalerFührungsstab").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/KantonalerFührungsstab.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#KommandopostenFront").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/KommandopostenFront.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#KommandopostenRück").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/KommandopostenRück.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#RegionalerFührungsstab").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/RegionalerFührungsstab.gif');
+    }
+});
+});
+
+$(document).ready(function() {
+$("#Sammelstelle").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/Sammelstelle.gif');
+    }
+});
+});
+
+
 </script>
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?key=AIzaSyCCa01wBVhTL60GR4fEF0dFz2PPuOCyVTc&sensor=false">
@@ -224,22 +323,22 @@ stop: function(e) {
 			<td colspan=3 align='center'><br><font size=6>Signaturen</font></td>
 			</tr>
 			<tr>
-				<td colspan=3 align='center'><font size=4>Bestehende Situation</font></td>
+				<td colspan=3 align='center'><a href="javascript:void(0)" onclick="collapseTr('invisible1')"><font size=4>Bestehende Situation</font></a></td>
 			</tr>
-			<tr id="beliebig>
+			<tr id="invisible1" style="display:none; visibility:hidden;">
 				<td align='center'><img id="aufzug" src='images/aufzug.gif' /><br></td>
 				<td align='center'><img id="überflurhydrant" src='images/überflurhydrant.gif' /><br></td>
 				<td align='center'><img id="unterflurhydrant" src='images/unterflurhydrant.gif' /><br></td>
 			</tr>
 			<tr>
-				<td colspan=3 align='center'><font size=4>Schadenlage</font></td>
+				<td colspan=3 align='center'><a href="javascript:void(0)" onclick="collapseTr('invisible2')"><font size=4>Schadenlage</font></a></td>
 			</tr>
-			<tr>
+			<tr id="invisible2" style="display:none; visibility:hidden;">
 				<td align='center'><img id="tote" src='images/tote.gif' /><br></td>
 				<td align='center'><img id="verletzte" src='images/verletzte.gif' /><br></td>
 				<td align='center'><img id="obdachlose" src='images/obdachlose.gif' /><br></td>
 			</tr>
-			<tr>
+			<tr id="invisible2" style="display:none; visibility:hidden;">
 				<td align='center'><img id="vermisste" src='images/vermisste.gif' /><br></td>
 				<td align='center'><img id="eingeschlossene" src='images/eingeschlossene.gif' /><br></td>
 				<td/>
@@ -253,13 +352,29 @@ stop: function(e) {
 				<td align='center'><img id="Kontrollstelle" src='images/Kontrollstelle.gif' /><br></td>
 			</tr>
 			<tr>
+				<td align='center'><img id=KantonalerFührungsstab src='images/KantonalerFührungsstab.gif' /><br></td>
+				<td align='center'><img id="KommandopostenFront" src='images/KommandopostenFront.gif' /><br></td>
+				<td align='center'><img id="KommandopostenRück" src='images/KommandopostenRück.gif' /><br></td>
+			</tr>
+			<tr>
+				<td align='center'><img id=RegionalerFührungsstab src='images/RegionalerFührungsstab.gif' /><br></td>
+				<td align='center'><img id="Sammelstelle" src='images/Sammelstelle.gif' /><br></td>
+				<td></td>
+			</tr>
+			<tr>
 				<td colspan=3 align='center'><font size=4>Gefahren</font></td>
+			</tr>
+			<tr>
+				<td align='center'><img id=achtung src='images/achtung.gif' /><br></td>
+				<td align='center'><img id="chemikalien" src='images/chemikalien.gif' /><br></td>
+				<td align='center'><img id="explosion" src='images/explosion.gif' /><br></td>
 			</tr>
 			<tr>
 				<td align='center'><img id=gas src='images/gas.gif' /><br></td>
 				<td></td>
 				<td></td>
 			</tr>
+			
 	</table>
 	<div id="placemark_b" onclick="placeMarkerOld()"/>
 	</div>
