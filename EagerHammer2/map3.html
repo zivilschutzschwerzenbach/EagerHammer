@@ -107,6 +107,16 @@ stop: function(e) {
 });
 });
 
+$(document).ready(function() {
+$("#verletzte").draggable({helper: 'clone',
+stop: function(e) {
+    var point=new google.maps.Point(e.pageX,e.pageY);
+    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
+    placeMarker(ll,'images/eingeschlossene.gif');
+    }
+});
+});
+
 
 $(document).ready(function() {
 $("#draggable").draggable({helper: 'clone',
@@ -118,15 +128,7 @@ stop: function(e) {
 });
 });
 
-$(document).ready(function() {
-$("#draggable").draggable({helper: 'clone',
-stop: function(e) {
-    var point=new google.maps.Point(e.pageX,e.pageY);
-    var ll=overlay.getProjection().fromContainerPixelToLatLng(point);
-    placeMarker(ll,'images/achtung.gif');
-    }
-});
-});
+
 
 
 </script>
@@ -148,8 +150,8 @@ Drag the image<br />
 
 <table>
 <tr>
-<td><img id="tote" src='images/achtung.gif' /><br></td>
-<td><img id="tote" src='images/chemikalien.gif' /><br></td>
+<td><img id="tote" src='images/tote.gif' /><br></td>
+<td><img id="tote" src='images/verletzte.gif' /><br></td>
 <td><img id="tote" src='images/eingeschlossene.gif' /><br></td>
 <td><img id="tote" src='images/explosion.gif' /><br></td>
 <td><img id="tote" src='images/fahrzeug.gif' /><br></td>
@@ -162,9 +164,9 @@ Drag the image<br />
 <td><img id="tote" src='images/obachlose.gif' /><br></td>
 <td><img id="tote" src='images/RegionalerFührungsstab.gif' /><br></td>
 <td><img id="tote" src='images/Sammelstelle.gif' /><br></td>
-<td><img id="tote" src='images/tote.gif' /><br></td>
+<td><img id="tote" src='images/achtung.gif' /><br></td>
 <td><img id="tote" src='images/vermisste.gif' /><br></td>
-<td><img id="verletzte" src='images/verletzte.gif' /><br>
+<td><img id="verletzte" src='images/chemikalien.gif' /><br>
 </td>
 </tr>
 <tr>
